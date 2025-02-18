@@ -1,0 +1,911 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #fff;
+    color: white;
+    overflow: hidden;
+}
+
+/* Левая часть (Фото) */
+.left-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Левая часть (Фото) */
+.left-side {
+    width: 45%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+/* Кнопка меню */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6); /* полупрозрачный тёмный фон */
+    color: white;
+    width: 40px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000; /* Обеспечим, чтобы меню всегда было поверх */
+    padding: 5px;
+    transition: background-color 0.3s ease;
+    filter: drop-shadow(0px 0px 20px rgba(139, 0, 0, 0.6));
+}
+
+.menu-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    filter: drop-shadow(0px 0px 20px rgba(139, 0, 0, 1));
+}
+
+/* Три полосочки */
+.menu-btn span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* Скрытое выпадающее меню */
+.menu-dropdown {
+    position: fixed;
+    top: 43px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 1.8s ease;
+    transform: translateY(-20px);
+}
+
+/* Показать выпадающее меню при нажатии */
+.left-side.active .menu-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* Разрешим взаимодействие с меню */
+}
+
+/* Стили для элементов меню */
+.menu-item {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+    cursor: pointer; /* Добавим стиль для указателя при наведении */
+}
+
+.menu-item:hover {
+    filter: drop-shadow(0px 0px 50px rgba(255, 0, 0, 1)) 
+            drop-shadow(0px 0px 25px rgba(255, 50, 50, 0.9)) 
+            drop-shadow(0px 0px 15px rgba(255, 100, 100, 0.8));
+            drop-shadow(0px 0px 10px rgba(255, 100, 100, 0.6));
+}
+
+/* Стиль курсора для клика */
+.menu-item:active {
+    background-color: rgba(139, 0, 0, 0.2);
+}
+
+
+/* Правая часть (Контент) */
+.right-side {
+    width: 55%;
+    margin-left: auto;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 60px 40px;
+    background: linear-gradient(to right, rgba(11, 11, 11, 1), rgba(30, 30, 30, 1));
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1; /* Контент правой части будет поверх */
+    transition: width 0.8s ease; /* Плавное изменение ширины */
+    box-shadow: -8px 0px 8px rgba(0, 0, 0, 1); /* Размытие границы слева */
+}
+
+
+/* Плавное закрытие левой части при наведении */
+.right-side:hover {
+    width: 88%; /* При наведении правая часть полностью закрывает левую */
+}
+
+.highlight {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #8b0000; /* Приглушённый красный */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Явная чёрная тень */
+}
+
+/* Секции */
+.section {
+    padding: 30px 0;
+}
+
+/* Заголовок */
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Явная чёрная тень */
+    filter: drop-shadow(0px 0px 20px rgba(139, 0, 0, 0.6));
+}
+
+/* Подзаголовок */
+.subtitle {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Явная чёрная тень */
+}
+
+/* Текст */
+.description {
+    font-size: 16px;
+    color: #d4d4d4;
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Явная чёрная тень */
+    text-align: left;
+}
+
+/* Социальные сети */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social img {
+    width: 30px;
+    height: 30px;
+}
+
+.social:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 15px rgba(139, 0, 0, 0.8);
+}
+
+.x { background: black; }
+.insta { background: black; }
+.tg { background: black; }
+
+/* Призыв к действию */
+.call-to-action {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #d4d4d4;
+    line-height: 1.6;
+}
+
+.call-to-action span {
+    display: block;
+    color: #00ffcc;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Контакты */
+.contacts p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.contact-link:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Секция книг */
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.book {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Для выравнивания кнопки по низу */
+}
+
+.book-cover {
+    width: 100%;
+    height: 360px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.5s ease;
+    position: relative;
+}
+
+.book-cover:hover {
+    transform: perspective(600px) rotateY(-12deg);
+    filter: drop-shadow(0px 0px 20px rgba(139, 0, 0, 0.6));
+}
+
+
+.book-cover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+    transform: skewX(-10deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.book-cover:hover::after {
+    opacity: 1;
+}
+
+
+.book-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Современный стиль кнопки с эффектом стекла */
+.btn {
+    display: inline-block;
+    background: rgba(139, 0, 0, 0.3); /* Полупрозрачный бардовый цвет для фона */
+    color: white;
+    padding: 6px 33px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0px 3px 6px rgba(139, 0, 0, 0.3); /* Легкая тень */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(10px); /* Эффект размытия фона за кнопкой (как под стеклом) */
+    -webkit-backdrop-filter: blur(10px); /* Для Webkit-браузеров (Safari) */
+    align-self: flex-end; /* Выравнивание кнопки по правому нижнему краю */
+}
+
+/* При наведении кнопка становится темнее */
+.btn:hover {
+    background: rgba(139, 0, 0, 0.5); /* Увеличиваем непрозрачность фона при наведении */
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 15px rgba(139, 0, 0, 0.5); /* Усиленная тень */
+}
+
+/* При активном состоянии кнопка слегка сжимается */
+.btn:active {
+    transform: translateY(1px);
+}
+
+
+/* Адаптивный стиль для маленьких экранов */
+@media (max-width: 768px) {
+    .book-container {
+        grid-template-columns: 2fr; /* книги в одну колонку */
+    }
+}
+
+@media (max-width: 480px) {
+    .book-title {
+        font-size: 16px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Для малых экранов */
+@media screen and (max-width: 600px) {
+    p.description {
+        font-size: 90%; /* Уменьшаем размер шрифта для абзацев с классом .description */
+    }
+    
+    h1.title {
+        font-size: 150%; /* Уменьшаем размер шрифта для заголовков h1 */
+    }
+    
+    h2.title {
+        font-size: 150%; /* Уменьшаем размер шрифта для заголовков h2 с классом title */
+    }
+    
+    h2.subtitle {
+        font-size: 110%; /* Уменьшаем размер шрифта для подзаголовков h2 с классом subtitle */
+    }
+}
+
+/* ПРОКРУТКА */
+/* Скрыть стандартную полосу прокрутки */
+::-webkit-scrollbar {
+    width: 0px;  /* Убираем ширину полосы прокрутки */
+    height: 0px; /* Убираем высоту горизонтальной полосы */
+}
+
+/* МОДАЛЬНЫЕ ОКНА */
+/* Полноэкранное модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95); /* Затемнённый фон */
+    backdrop-filter: blur(10px); /* Размытие заднего фона */
+    color: white;
+    padding: 60px 40px;
+    overflow-y: auto; /* Включаем прокрутку */
+    text-align: center;
+}
+
+/* Красный неоновый крестик */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+    text-shadow: 0 0 20px red, 0 0 40px red;
+    transition: transform 0.3s;
+}
+
+.close:hover {
+    transform: scale(1.3);
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* БЛОГ ДИЗАЙН СТАТЬИ */
+/* Общий контейнер блога */
+.blog-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* Заголовок статьи */
+.blog-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8);
+}
+
+/* Картинка на всю ширину */
+.blog-image {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Тело статьи */
+.blog-content {
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    text-align: left;
+}
+
+/* Заголовки в статье */
+.blog-content h2 {
+    margin-top: 20px;
+    color: #ff4d4d;
+    font-size: 18px;
+    text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8);
+    text-align: left;
+}
+
+/* Ссылки */
+.blog-content a {
+    color: #ff4d4d;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: left;
+}
+
+.blog-content a:hover {
+    text-decoration: underline;
+}
+
+/* Списки */
+.blog-content ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.blog-content ul li {
+    margin-bottom: 5px;
+}
+
+.blog-post {
+    margin-bottom: 30px; /* Отступ между статьями */
+}
+
+/* КНОПКИ ПОДЕЛИТЬСЯ */
+/* Стиль для контейнера кнопок */
+.blog-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* Стиль для кнопки "Сохранить в Telegram" */
+.save-btn {
+    padding: 10px 20px;
+    background-color: #4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #8b0000;
+}
+
+/* Стиль для кнопки "Поделиться в соц. сетях" */
+.share-btn {
+    padding: 10px 20px;
+    background-color: #4444; /* Зеленый для WhatsApp */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.share-btn:hover {
+    background-color: #8b0000;
+}
+
+/* ПРОЕКТЫ */
+/* Контейнер проектов */
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Расстояние между проектами */
+}
+
+/* Карточка проекта */
+.project {
+    width: calc(50% - 20px); /* Два проекта в ряд (учитывая отступ) */
+    max-width: 400px;
+    background: rgba(50, 50, 50, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 768px) {
+    .project {
+        width: 100%; /* Один проект в ряд на маленьких экранах */
+    }
+}
+
+/* Фиксированный размер изображения */
+.project img {
+    width: 100%;
+    max-height: 130px;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Заголовки и описание */
+.project h3 {
+    margin: 10px 0;
+    font-size: 16px;
+    color: white;
+}
+
+.project p {
+    font-size: 12px;
+    opacity: 0.8;
+    color: #ccc;
+}
+
+/* Контейнер информации */
+.project-info {
+    display: block; /* Меняем display, чтобы анимация работала */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    text-align: left;
+}
+
+/* Оформление списка */
+.project-info ul {
+    padding-left: 15px;
+    list-style: none;
+}
+
+.project-info ul li {
+    position: relative;
+    padding-left: 15px;
+}
+
+.project-info ul li::before {
+    content: "★";
+    color: #ff4444;
+    position: absolute;
+    left: 0;
+}
+
+/* Кнопка "Подробнее" */
+.toggle-info {
+    background: #4444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 8px;
+    transition: background 0.3s;
+}
+
+.toggle-info:hover {
+    background: #cc3333;
+}
+
+/* Ссылка на проект */
+.project-info a {
+    display: block;
+    margin-top: 8px;
+    padding: 6px;
+    background: #ff4444;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.project-info a:hover {
+    background: #cc3333;
+}
+
+/* УСЛУГИ */
+/* Основные стили для модального окна */
+#order {
+    display: none; /* Прячем модальное окно по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Тёмный фон */
+    z-index: 9999;
+    overflow: auto;
+    padding: 20px;
+}
+
+/* Закрытие модального окна */
+#order .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Заголовок модального окна */
+#order h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Контейнер для всех услуг */
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Автоматическая адаптация под экран */
+    gap: 20px;
+    margin: 0 auto;
+}
+
+/* Элемент услуги */
+.service-item {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+/* Элемент изображение */
+.service-item img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* При наведении на услугу, лёгкое увеличение */
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для новых услуг, чтобы они выглядели в том же стиле */
+.service-item h3 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-family: 'Arial', sans-serif;
+}
+
+.service-item p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-family: 'Verdana', sans-serif;
+}
+
+.service-item ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 25px;
+    color: #666;
+    text-align: left;
+}
+
+.service-item ul li {
+    margin-bottom: 10px;
+}
+
+.order-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.order-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* ПАРТНЁРСТВО */
+/* Стили для модального окна */
+#partnership {
+    display: none; /* Скрыть модальное окно по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Тёмный фон */
+    z-index: 9999;
+    overflow: auto;
+    padding: 20px;
+}
+
+/* Закрытие модального окна */
+#partnership .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Заголовок модального окна */
+#partnership h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Подзаголовок */
+#partnership h3 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+#partnership h4 {
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+}
+
+/* Описание */
+#partnership p {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стили для таблицы вакансий */
+.vacancy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    color: #fff;
+    border: 1px solid #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* Эффект лазерного свечения */
+}
+
+.vacancy-table th, .vacancy-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ff1e00; /* Глубокий лазерно-красный */
+}
+
+.vacancy-table th {
+    background-color: #333;
+}
+
+.vacancy-table tr:nth-child(even) {
+    background-color: #444;
+}
+
+/* Контейнер для кнопок, чтобы выстроить их в ряд */
+.contact-buttons-container {
+    display: flex;
+    flex-wrap: wrap; /* Перенос на новую строку, если не помещаются */
+    gap: 10px; /* Расстояние между кнопками */
+    justify-content: center; /* Выравнивание кнопок по центру */
+}
+
+/* Стили для кнопок связи */
+.contact-button {
+    display: inline-block; /* Делаем кнопки строчно-блочными */
+    padding: 8px 15px;
+    border: 1px solid #ff0000; /* Красный лазерный цвет */
+    background-color: #990000; /* Тёмный фон для кнопки */
+    color: #fff; /* Белый текст */
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Эффект при наведении */
+.contact-button:hover {
+    background-color: #cc0000; /* Чуть ярче красный */
+    transform: scale(1.05); /* Лёгкое увеличение */
+}
+
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 768px) {
+    .vacancy-table {
+        font-size: 12px; /* Уменьшаем шрифт для таблиц */
+    }
+
+    .vacancy-table th, 
+    .vacancy-table td {
+        padding: 5px; /* Уменьшаем отступы в ячейках */
+    }
+
+    #partnership h2, 
+    #partnership h3, 
+    #partnership h4 {
+        font-size: 18px; /* Уменьшаем размер заголовков */
+    }
+
+    #partnership p {
+        font-size: 14px; /* Уменьшаем текст описания */
+    }
+
+    .contact-button {
+        font-size: 11px; /* Делаем кнопку немного меньше */
+        padding: 6px 12px;
+    }
+}
+
+/* Адаптивность для очень маленьких экранов (мобильные устройства) */
+@media (max-width: 480px) {
+    .vacancy-table {
+        font-size: 12px;
+    }
+
+    .vacancy-table th, 
+    .vacancy-table td {
+        padding: 3px;
+    }
+
+    #partnership h2, 
+    #partnership h3, 
+    #partnership h4 {
+        font-size: 18px;
+    }
+
+    #partnership p {
+        font-size: 14px;
+    }
+
+    .contact-button {
+        font-size: 10px;
+        padding: 6px 14px;
+    }
+}
