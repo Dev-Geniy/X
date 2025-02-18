@@ -679,6 +679,11 @@ body {
     margin: 0 auto;
 }
 
+.highlight-text1 {
+    font-size: 20px; /* Увеличиваем текст только в этих строках */
+    font-weight: bold; /* Делаем текст жирным */
+}
+
 /* Элемент услуги */
 .service-item {
     background-color: #fff;
